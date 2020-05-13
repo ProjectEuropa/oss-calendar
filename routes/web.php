@@ -12,4 +12,13 @@
 */
 
 
-Route::get('{uri}', 'NuxtController')->where('uri', '.*');
+Route::get('/', function() {
+    return view('index');
+});
+
+Route::get('{any}', function() {
+    return view('index');
+})->where('any', '.*');
+
+
+// Route::get('{uri}', 'NuxtController')->where('uri', '.*');

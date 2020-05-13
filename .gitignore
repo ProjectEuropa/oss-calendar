@@ -13,6 +13,10 @@ _ide_helper.php
 .nuxt
 public/_nuxt
 public/.htaccess
+public/css
+public/fonts
+public/js
+public/mix-manifest.json
 
 #docker
 docker/misc/data
