@@ -1,50 +1,54 @@
-import Vue from 'vue'
+import axios from "axios"
 
-Vue.mixin({
-  methods: {
-    async serverSideValidate() {
-      //this.$validator.errors.clear()
-      for (let key in Vue.prototype.serverSideErrors) {
-        // APIサーバ側のバリデートエラーをクライアントバリデートにセットする
-        this.$validator.errors.add({
-          field: key,
-          msg: Vue.prototype.serverSideErrors[key]
-        })
-      }
-      Vue.prototype.serverSideErrors = {}
-      console.log('serverSideValidated')
-    },
+const AxiosPlugin = {}
 
-    async localValidate() {
-      await this.$validator.validate().then(valid => {
-        if (!valid) {
-          var e = new Error('ローカルバリデーションエラー')
-          e.response = {
-            data: this.$validator.errors
-          }
-          throw e
+AxiosPlugin.install = function (Vue, options) {
+  Vue.mixin({
+    methods: {
+      async serverSideValidate() {
+        //this.$validator.errors.clear()
+        for (let key in Vue.prototype.serverSideErrors) {
+          // APIサーバ側のバリデートエラーをクライアントバリデートにセットする
+          this.$validator.errors.add({
+            field: key,
+            msg: Vue.prototype.serverSideErrors[key]
+          })
         }
-      })
-    },
+        Vue.prototype.serverSideErrors = {}
+        console.log('serverSideValidated')
+      },
 
-    initialValidate() {
-      Vue.prototype.serverSideErrors = {}
-      this.$validator.errors.clear()
-      this.$validator.reset()
+      async localValidate() {
+        await this.$validator.validate().then(valid => {
+          if (!valid) {
+            var e = new Error('ローカルバリデーションエラー')
+            e.response = {
+              data: this.$validator.errors
+            }
+            throw e
+          }
+        })
+      },
+
+      initialValidate() {
+        Vue.prototype.serverSideErrors = {}
+        this.$validator.errors.clear()
+        this.$validator.reset()
+      }
     }
-  }
-})
-
-export default function({ $axios, $validator, store }) {
-  $axios.onRequest(config => {
-    console.log('Making request to ' + config.url)
   })
 
-  $axios.onResponse(response => {
+  Vue.prototype.$axios = axios;
+
+  Vue.prototype.$axios.onRequest = (config => {
+    console.log('Making request to ' + config.url)
+  });
+
+  Vue.prototype.$axios.onResponse = (response => {
     console.log(response.config.data)
   })
 
-  $axios.onError(error => {
+  Vue.prototype.$axios.onError = (error => {
     let message = null
     // リクエストしてレスポンスが返ってきたときのエラー処理
     if (error.response) {
@@ -74,7 +78,9 @@ export default function({ $axios, $validator, store }) {
     }
 
     if (message !== null) {
-      store.commit('message/setMessage', message)
+      this.$store.commit('message/setMessage', message)
     }
   })
 }
+
+export default AxiosPlugin;
