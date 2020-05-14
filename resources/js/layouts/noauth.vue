@@ -2,7 +2,7 @@
   <v-app id="app">
     <noauth-header />
     <v-content>
-      <nuxt />
+      <router-view></router-view>
     </v-content>
     <common-footer />
     <message-snackbar />

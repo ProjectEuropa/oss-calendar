@@ -1,5 +1,5 @@
 <template>
-  <!-- <v-app style="background-color: #ffffff;">
+  <v-app style="background-color: #ffffff;">
     <default-sidebar />
     <default-header
       @onMyPasswordClick="myPasswordDialog = true"
@@ -7,14 +7,12 @@
       @onMySettingClick="mySettingDialog = true"
     />
     <v-content>
-      <v-container id="main-container-wrap"> -->
-
+      <v-container id="main-container-wrap">
         <router-view></router-view>
-
-      <!-- </v-container>
-    </v-content> -->
+      </v-container>
+    </v-content>
     <!-- <common-footer /> -->
-    <!-- <message-snackbar />
+    <message-snackbar />
     <my-password-dialog
       :props-dialog="myPasswordDialog"
       @close="myPasswordDialog = false"
@@ -27,32 +25,32 @@
       :props-dialog="mySettingDialog"
       @close="mySettingDialog = false"
     />
-  </v-app> -->
+  </v-app>
 </template>
 
 <script>
-// import DefaultHeader from '../components/layouts/default/Header'
-// import DefaultSidebar from '../components/layouts/default/Sidebar'
-// import MessageSnackbar from '../components/MessageSnackbar'
-// import MyPasswordDialog from '../components/dialogs/mypage/MyPassword.vue'
-// import MyEmailDialog from '../components/dialogs/mypage/MyEmail.vue'
-// import MySettingDialog from '../components/dialogs/mypage/MySetting.vue'
+import DefaultHeader from '~/components/layouts/default/Header'
+import DefaultSidebar from '~/components/layouts/default/Sidebar'
+import MessageSnackbar from '~/components/MessageSnackbar'
+import MyPasswordDialog from '~/components/dialogs/mypage/MyPassword.vue'
+import MyEmailDialog from '~/components/dialogs/mypage/MyEmail.vue'
+import MySettingDialog from '~/components/dialogs/mypage/MySetting.vue'
 
-// export default {
-//   components: {
-//     DefaultHeader,
-//     DefaultSidebar,
-//     MessageSnackbar,
-//     MyPasswordDialog,
-//     MyEmailDialog,
-//     MySettingDialog
-//   },
-//   data() {
-//     return {
-//       myPasswordDialog: false,
-//       myEmailDialog: false,
-//       mySettingDialog: false
-//     }
-//   }
-// }
+export default {
+  components: {
+    DefaultHeader,
+    DefaultSidebar,
+    MessageSnackbar,
+    MyPasswordDialog,
+    MyEmailDialog,
+    MySettingDialog
+  },
+  data() {
+    return {
+      myPasswordDialog: false,
+      myEmailDialog: false,
+      mySettingDialog: false
+    }
+  }
+}
 </script>

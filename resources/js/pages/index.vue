@@ -62,7 +62,7 @@ import rrulePlugin from '@fullcalendar/rrule'
 import momentPlugin from '@fullcalendar/moment'
 import moment from 'moment'
 
-import Schedule from '../components/dialogs/Schedule'
+import Schedule from '~/components/dialogs/Schedule'
 
 export default {
   middleware: 'auth',
