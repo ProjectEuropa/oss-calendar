@@ -3,7 +3,7 @@
     <v-app-bar-nav-icon @click="$store.commit('toggleDrawer')" />
     <v-toolbar-title>
       <router-link to="/">
-        <img src="~/assets/img/logo.png" alt="OSS-Calendar" class="icon_logo" />
+        <img src="../../../assets/img/logo.png" alt="OSS-Calendar" class="icon_logo" />
       </router-link>
     </v-toolbar-title>
     <v-spacer />
