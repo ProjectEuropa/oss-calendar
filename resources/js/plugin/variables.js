@@ -1,4 +1,6 @@
-export default ({ app }, inject) => {
+
+const VariablesPlugin = {}
+VariablesPlugin.install = function (Vue) {
   let calendar = null
   const setCalendar = cal => {
     calendar = cal
@@ -6,12 +8,14 @@ export default ({ app }, inject) => {
   const getCalendar = () => {
     return calendar
   }
-  inject('setCalendar', cal => {
+
+  Vue.prototype.$setCalendar = cal => {
     setCalendar(cal)
-  })
-  inject('getCalendar', () => {
-    return getCalendar()
-  })
+  }
+  Vue.prototype.$getCalendar = () => {
+    return setCalendar(cal)
+  }
+
 
   // モバイル判定をwidthで行う
   let mobileFlag = null
@@ -20,7 +24,9 @@ export default ({ app }, inject) => {
     mobileFlag = w > 700 ? false : true
     return mobileFlag
   }
-  inject('isMobile', () => {
-    return isMobile()
-  })
+
+  Vue.prototype.$isMobile = () => {
+    return isMobile
+  }
 }
+export default VariablesPlugin;
