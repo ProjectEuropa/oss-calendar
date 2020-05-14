@@ -27,7 +27,7 @@ class CreateSchedulesTable extends Migration
             $table->string('description',500)->nullable();
             $table->string('location',500)->nullable();
             $table->string('color_id',500)->nullable();
-            $table->json('creator')->nullable();
+            $table->text('creator')->nullable();
             $table->integer('organizer_id')->nullable();
             $table->dateTime('start_date')->nullable();
             $table->dateTime('end_date')->nullable();
@@ -39,9 +39,9 @@ class CreateSchedulesTable extends Migration
             $table->string('ical_uid',500)->nullable();
             $table->integer('sequence')->nullable();
             $table->boolean('attendees_omitted')->nullable();
-            $table->json('extended_properties_id')->nullable();
+            $table->text('extended_properties_id')->nullable();
             $table->string('hangout_link',500)->nullable();
-            $table->json('gadget')->nullable();
+            $table->text('gadget')->nullable();
             $table->boolean('anyone_can_add_self')->nullable();
             $table->boolean('guests_can_invite_others')->nullable();
             $table->boolean('guests_can_modify')->nullable();
@@ -49,7 +49,7 @@ class CreateSchedulesTable extends Migration
             $table->boolean('private_copy')->nullable();
             $table->boolean('locked')->nullable();
             $table->boolean('reminders_use_default')->nullable();
-            $table->json('source')->nullable();
+            $table->text('source')->nullable();
             $table->integer('visibility_id')->nullable();
             $table->integer('public_setting_id')->nullable();
             $table->integer('event_type_id')->unsigned()->nullable();
