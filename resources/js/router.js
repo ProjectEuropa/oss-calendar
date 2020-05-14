@@ -10,7 +10,7 @@ const router = new Router({
     {
       path: '/',
       name: 'Index',
-      meta: { layout: 'noauth'},
+      meta: { layout: 'default'},
       component: Index,
     }
   ],
