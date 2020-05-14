@@ -6,7 +6,7 @@ import AuthPlugin from '~/plugin/auth'
 import AclPlugin from '~/plugin/acl'
 import UtilPlugin from '~/plugin/util'
 import VariablesPlugin from '~/plugin/variables';
-
+import AxiosPlugin from '~/plugin/axios';
 import DefaultLayout from '~/layouts/default';
 import NoAuthLayout from '~/layouts/noauth';
 
@@ -17,6 +17,8 @@ Vue.use(AuthPlugin)
 Vue.use(AclPlugin)
 Vue.use(UtilPlugin)
 Vue.use(VariablesPlugin)
+Vue.use(AxiosPlugin)
+
 
 Vue.component('default-layout', DefaultLayout);
 Vue.component('noauth-layout', NoAuthLayout);
