@@ -4,6 +4,7 @@ import Vuetify from 'vuetify'
 import ja from 'vuetify/es5/locale/ja'
 import 'vuetify/dist/vuetify.min.css'
 import '@mdi/font/css/materialdesignicons.css'
+import 'material-design-icons-iconfont/dist/material-design-icons.css'
 
 Vue.use(Vuetify)
 
