@@ -40,7 +40,7 @@ export const mutations = {
  * データの加工や非同期処理はActionsで行い、Mutationsからcommitして更新をする。
  * Actionsの呼び出しにはdispatchをする。
  */
-const actions = {}
+export const actions = {}
 
 /**
  * gettersはstateの値を取得するのに利用

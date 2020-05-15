@@ -40,6 +40,13 @@ AxiosPlugin.install = function (Vue, options) {
 
   Vue.prototype.$axios = axios;
 
+  Vue.prototype.$axios.defaults.headers.common = {
+    'X-Requested-With': 'XMLHttpRequest',
+    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+  };
+
+  Vue.prototype.$axios.defaults.headers.common['Authorization'] = `Bearer ${document.cookie.replace(/(?:(?:^|.*;\s*)access_token\s*\=\s*([^;]*).*$)|^.*$/, "$1")}`
+
   Vue.prototype.$axios.onRequest = (config => {
     console.log('Making request to ' + config.url)
   });

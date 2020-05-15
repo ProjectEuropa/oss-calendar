@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import index from '~/store/modules/index'
 import message from '~/store/modules/message'
 import params from '~/store/modules/params'
 import { actions, mutations, state, getters } from '~/store/modules/index'
