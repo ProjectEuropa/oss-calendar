@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import Index from '~/store/modules/index'
-import Message from '~/store/modules/message'
-import Params from '~/store/modules/params'
+import index from '~/store/modules/index'
+import message from '~/store/modules/message'
+import params from '~/store/modules/params'
+import { actions, mutations, state, getters } from '~/store/modules/index'
 
 Vue.use(Vuex)
 
@@ -10,9 +11,12 @@ const debug = process.env.NODE_ENV !== 'production'
 
 export default new Vuex.Store({
   modules: {
-    Index,
-    Message,
-    Params
+    message,
+    params
   },
-  strict: debug,
+  state: state(),
+  getters: getters,
+  mutations: mutations,
+  actions: actions,
+  ict: debug,
 })

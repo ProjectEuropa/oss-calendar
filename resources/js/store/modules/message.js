@@ -1,15 +1,15 @@
-export const state = () => ({
+const state = () => ({
   message: '',
   color: 'info'
 })
 
-export const getters = {
+const getters = {
   getMessage: state => state.message,
   getColor: state => state.color,
   existsMessage: state => state.message !== ''
 }
 
-export const mutations = {
+const mutations = {
   setMessage(state, message) {
     state.message = message
   },
@@ -22,7 +22,7 @@ export const mutations = {
   }
 }
 
-export const actions = {
+const actions = {
   setMessage({ commit }, message) {
     commit('setMessage', message)
   },
@@ -45,8 +45,8 @@ export const actions = {
 
 export default {
   namespaced: true,
-  state,
-  getters,
-  actions,
-  mutations
+  state: state(),
+  getters: getters,
+  actions: actions,
+  mutations: mutations
 }
