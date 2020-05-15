@@ -13,7 +13,7 @@ VariablesPlugin.install = function (Vue) {
     setCalendar(cal)
   }
   Vue.prototype.$getCalendar = () => {
-    return setCalendar(cal)
+    return getCalendar()
   }
 
 
