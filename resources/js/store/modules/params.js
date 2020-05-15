@@ -1,14 +1,14 @@
-export const state = () => ({
+const state = () => ({
   params: {}
 })
 
-export const getters = {
+const getters = {
   getParams(state) {
     return state.params
   }
 }
 
-export const mutations = {
+const mutations = {
   setParams(state, params) {
     state.params = params
   },
@@ -17,7 +17,7 @@ export const mutations = {
   }
 }
 
-export const actions = {
+const actions = {
   setParams({ commit }, params) {
     commit('setParams', params)
   },
@@ -27,7 +27,7 @@ export const actions = {
 }
 
 export default {
-  namespaced: true,
+  namespace: true,
   state,
   getters,
   actions,

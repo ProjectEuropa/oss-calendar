@@ -26,7 +26,7 @@ VariablesPlugin.install = function (Vue) {
   }
 
   Vue.prototype.$isMobile = () => {
-    return isMobile
+    return isMobile()
   }
 }
 export default VariablesPlugin;
