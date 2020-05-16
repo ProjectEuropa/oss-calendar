@@ -45,7 +45,7 @@ const router = new Router({
     {
       path: '/event_type/admin',
       name: 'EventTypeAdmin',
-      meta: { layout: 'default, auth: true' },
+      meta: { layout: 'default', auth: true },
       component: EventTypeAdmin,
     },
     {
