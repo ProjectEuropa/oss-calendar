@@ -33,43 +33,43 @@ const router = new Router({
     {
       path: '/department/admin',
       name: 'DepartmentAdmin',
-      meta: { layout: 'default' },
+      meta: { layout: 'default', auth: true },
       component: DepartmentAdmin,
     },
     {
       path: '/common_group/admin',
       name: 'CommonGroupAdmin',
-      meta: { layout: 'default' },
+      meta: { layout: 'default', auth: true },
       component: CommonGroupAdmin,
     },
     {
       path: '/event_type/admin',
       name: 'EventTypeAdmin',
-      meta: { layout: 'default' },
+      meta: { layout: 'default, auth: true' },
       component: EventTypeAdmin,
     },
     {
       path: '/holiday/admin',
       name: 'HolidayAdmin',
-      meta: { layout: 'default' },
+      meta: { layout: 'default', auth: true },
       component: HolidayAdmin,
     },
     {
       path: '/individual_group',
       name: 'IndividualGroup',
-      meta: { layout: 'default' },
+      meta: { layout: 'default', auth: true },
       component: IndividualGroup,
     },
     {
       path: '/mypage/email/check/:token',
       name: 'CheckToken',
-      meta: { layout: 'default' },
+      meta: { layout: 'default', auth: true },
       component: CheckToken,
     },
     {
       path: '/password/setting/:token/:email',
       name: 'SettingTokenEmail',
-      meta: { layout: 'noauth' },
+      meta: { layout: 'noauth', auth: true },
       component: SettingTokenEmail,
     },
     {
@@ -87,7 +87,7 @@ const router = new Router({
     {
       path: '/user/admin',
       name: 'UserAdmin',
-      meta: { layout: 'default' },
+      meta: { layout: 'default', auth: true },
       component: UserAdmin,
     }
   ],
@@ -95,7 +95,21 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   if (to.meta.auth) {
-    next();
+    router.app.$axios.get("/api/myself").then(response => {
+      const user = response.data;
+      if (user) {
+        router.app.$auth.user = user;
+        next()
+      } else {
+        next({
+          name: 'Login',
+        })
+      }
+    }).catch(error => {
+      next({
+        name: 'Login',
+      })
+    });
     return;
   }
   next();
