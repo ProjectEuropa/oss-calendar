@@ -16,8 +16,6 @@ AclPlugin.install = function (Vue) {
     return acl[subject][verb](user, ...args)
   }
   Vue.prototype.$can = function(verb, subject, ...args) {
-    console.log(this.$auth)
-
     const user = this.$auth.user
     return can(user, verb, subject, ...args)
   }

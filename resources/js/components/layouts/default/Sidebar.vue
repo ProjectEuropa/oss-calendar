@@ -210,7 +210,6 @@ export default {
       }
     },
     returnCalendarViewType() {
-      console.log(this.$auth)
       const viewId = this.$auth.user.home_page_id - 1
       return viewId
     }
