@@ -55,39 +55,44 @@ AxiosPlugin.install = function (Vue, options) {
     console.log(response.config.data)
   })
 
-  Vue.prototype.$axios.onError = (error => {
-    let message = null
-    // リクエストしてレスポンスが返ってきたときのエラー処理
-    if (error.response) {
-      const data = error.response.data
-      const status = error.response.status
-      if ((status === 422 || status === 429) && error.response.data.errors) {
-        // APIサーバ側でのバリデートエラーをセットする。
-        Vue.prototype.serverSideErrors = error.response.data.errors
-      } else if (
-        (status === 422 || status === 429) &&
-        error.response.data.errors
-      ) {
-        // APIサーバ側でのバリデートエラーをセットする。
-        Vue.prototype.serverSideErrors = error.response.data.errors
-      } else {
-        message = data.message
+  Vue.prototype.$axios.onError = Vue.prototype.$axios.interceptors.response.use(
+    function (response) {
+      return response;
+    },
+    function (error) {
+      let message = null
+      // リクエストしてレスポンスが返ってきたときのエラー処理
+      if (error.response) {
+        const data = error.response.data
+        const status = error.response.status
+        if ((status === 422 || status === 429) && error.response.data.errors) {
+          // APIサーバ側でのバリデートエラーをセットする。
+          Vue.prototype.serverSideErrors = error.response.data.errors
+        } else if (
+          (status === 422 || status === 429) &&
+          error.response.data.errors
+        ) {
+          // APIサーバ側でのバリデートエラーをセットする。
+          Vue.prototype.serverSideErrors = error.response.data.errors
+        } else {
+          message = data.message
+        }
+      }
+      // リクエストしてレスポンスを受け取ることができなかったときのエラー処理
+      else if (error.request) {
+        message = 'このリクエストは、サーバ側で処理できませんでした。'
+      }
+      // リクエストもレスポンスもできなかったときのエラー処理
+      else {
+        message =
+          'リクエストの設定中に何らかの問題が発生し、エラーが発生しました。'
+      }
+
+      if (message !== null) {
+        this.$store.commit('message/setMessage', message)
       }
     }
-    // リクエストしてレスポンスを受け取ることができなかったときのエラー処理
-    else if (error.request) {
-      message = 'このリクエストは、サーバ側で処理できませんでした。'
-    }
-    // リクエストもレスポンスもできなかったときのエラー処理
-    else {
-      message =
-        'リクエストの設定中に何らかの問題が発生し、エラーが発生しました。'
-    }
-
-    if (message !== null) {
-      this.$store.commit('message/setMessage', message)
-    }
-  })
+  );
 }
 
 export default AxiosPlugin;
