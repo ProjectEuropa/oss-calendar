@@ -8,6 +8,7 @@ import UtilPlugin from '~/plugin/util'
 import VariablesPlugin from '~/plugin/variables';
 import AxiosPlugin from '~/plugin/axios';
 import LoadingPlugin from '~/plugin/loading';
+import RouterOptionPlugin from '~/plugin/routerOption';
 
 import DefaultLayout from '~/layouts/default';
 import NoAuthLayout from '~/layouts/noauth';
@@ -21,6 +22,7 @@ Vue.use(UtilPlugin)
 Vue.use(VariablesPlugin)
 Vue.use(AxiosPlugin)
 Vue.use(LoadingPlugin)
+Vue.use(RouterOptionPlugin, router, store)
 
 Vue.component('default-layout', DefaultLayout);
 Vue.component('noauth-layout', NoAuthLayout);
