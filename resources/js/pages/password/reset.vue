@@ -64,7 +64,7 @@ export default {
     async send() {
       try {
         const data = { email: this.email }
-        await this.$axios.post('/api/password/email', data)
+        await this.$axios.postCall('/api/password/email', data)
         this.$router.push({ path: '/password/reset_email_sent' })
         this.setTransferParams(data)
       } catch (e) {

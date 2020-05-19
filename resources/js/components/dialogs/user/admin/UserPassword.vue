@@ -103,7 +103,7 @@ export default {
     // パスワード更新(書き込み)
     async update() {
       try {
-        await this.$axios.patch(
+        await this.$axios.patchCall(
           '/api/user/password/' + this.selected.id,
           this.selected
         )

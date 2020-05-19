@@ -102,7 +102,7 @@ export default {
     // 有効無効更新(書き込み)
     async update() {
       try {
-        const res = await this.$axios.patch(
+        const res = await this.$axios.patchCall(
           '/api/enable_disable/' +
             this.propsModelName +
             '/' +

@@ -105,7 +105,7 @@ export default {
     // 更新(書き込み)
     async update() {
       try {
-        const res = await this.$axios.patch(
+        const res = await this.$axios.patchCall(
           '/api/mypage/email/edit',
           this.selected
         )
@@ -130,7 +130,7 @@ export default {
     // 再送
     async resend() {
       try {
-        const res = await this.$axios.patch('/api/mypage/email/resend')
+        const res = await this.$axios.patchCall('/api/mypage/email/resend')
         this.getConfirmEmail()
         this.$store.dispatch('message/setMessage', res.data.message)
         this.$store.dispatch('message/setSuccess')

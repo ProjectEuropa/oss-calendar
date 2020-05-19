@@ -28,6 +28,12 @@ AuthPlugin.install = function (Vue, router) {
     })
   }
 
+  Vue.prototype.$auth.setUserToken = (token) => {
+    document.cookie = `access_token=${token}`
+    Vue.prototype.$axios.defaults.headers.common['Authorization'] = `Bearer ${document.cookie.replace(/(?:(?:^|.*;\s*)access_token\s*\=\s*([^;]*).*$)|^.*$/, "$1")}`
+  }
+
+
 
 }
 

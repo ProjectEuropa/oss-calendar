@@ -92,7 +92,7 @@ export default {
     // 更新(書き込み)
     async update(info) {
       try {
-        await this.$axios.patch('/api/mypage/password', info)
+        await this.$axios.patchCall('/api/mypage/password', info)
         console.log('Password Updated')
       } catch (e) {
         throw e
