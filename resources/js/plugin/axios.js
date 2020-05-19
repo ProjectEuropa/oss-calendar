@@ -105,7 +105,7 @@ AxiosPlugin.install = function (Vue, options) {
         message =
           'リクエストの設定中に何らかの問題が発生し、エラーが発生しました。'
       }
-      alert(message)
+
       if (message !== null) {
         this.$store.commit('message/setMessage', message)
       }
