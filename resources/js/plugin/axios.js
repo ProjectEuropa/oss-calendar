@@ -40,6 +40,24 @@ AxiosPlugin.install = function (Vue, options) {
 
   Vue.prototype.$axios = axios;
 
+  Vue.prototype.$axios.postCall = async (url, params, options) => {
+    const res = await Vue.prototype.$axios.post(url, params, options);
+    if (!res) {
+      throw Error('validate');
+    } else {
+      return res;
+    }
+  };
+
+  Vue.prototype.$axios.patchCall = async (url, params, options) => {
+    const res = await Vue.prototype.$axios.patch(url, params, options);
+    if (!res) {
+      throw Error('validate');
+    } else {
+      return res;
+    }
+  };
+
   Vue.prototype.$axios.defaults.headers.common = {
     'X-Requested-With': 'XMLHttpRequest',
     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
@@ -55,7 +73,7 @@ AxiosPlugin.install = function (Vue, options) {
     console.log(response.config.data)
   })
 
-  Vue.prototype.$axios.onError = Vue.prototype.$axios.interceptors.response.use(
+  Vue.prototype.$axios.interceptors.response.use(
     function (response) {
       return response;
     },
@@ -87,7 +105,7 @@ AxiosPlugin.install = function (Vue, options) {
         message =
           'リクエストの設定中に何らかの問題が発生し、エラーが発生しました。'
       }
-
+      alert(message)
       if (message !== null) {
         this.$store.commit('message/setMessage', message)
       }

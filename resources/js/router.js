@@ -69,7 +69,7 @@ const router = new Router({
     {
       path: '/password/setting/:token/:email',
       name: 'SettingTokenEmail',
-      meta: { layout: 'noauth', auth: true },
+      meta: { layout: 'noauth' },
       component: SettingTokenEmail,
     },
     {
