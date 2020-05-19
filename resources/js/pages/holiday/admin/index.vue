@@ -348,7 +348,7 @@ export default {
             'Content-Type': 'multipart/form-data'
           }
         }
-        await this.$axios.post('/api/holiday/admin/upload', options, config)
+        await this.$axios.postCall('/api/holiday/admin/upload', options, config)
         this.messageTitle = 'CSVファイルの取り込みが完了しました'
         this.messageDialog = true
         this.refresh()

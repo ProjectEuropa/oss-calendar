@@ -247,7 +247,7 @@ export default {
           )
           this.$set(params, 'endTime', this.calendarFormatTime(info.event.end))
         }
-        await this.$axios.patch('/api/schedule/drop/' + info.event.id, params)
+        await this.$axios.patchCall('/api/schedule/drop/' + info.event.id, params)
       } catch (e) {
         console.log('Error : ' + e.response.data)
       }
@@ -307,7 +307,7 @@ export default {
           )
           this.$set(params, 'endTime', this.calendarFormatTime(info.event.end))
         }
-        await this.$axios.patch('/api/schedule/drop/' + info.event.id, params)
+        await this.$axios.patchCall('/api/schedule/drop/' + info.event.id, params)
       } catch (e) {
         console.log('Error : ' + e.response.data)
       }

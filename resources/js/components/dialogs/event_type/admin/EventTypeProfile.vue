@@ -130,7 +130,7 @@ export default {
     // データ作成(書き込み)
     async store() {
       try {
-        const res = await this.$axios.post(
+        const res = await this.$axios.postCall(
           '/api/event_type/admin',
           this.selected
         )

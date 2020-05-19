@@ -140,7 +140,7 @@ export default {
     // 更新(書き込み)
     async update(info) {
       try {
-        await this.$axios.patch('/api/mypage/setting', info)
+        await this.$axios.patchCall('/api/mypage/setting', info)
         console.log('MySetting Updated')
       } catch (e) {
         throw e

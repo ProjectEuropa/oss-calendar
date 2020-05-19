@@ -154,7 +154,7 @@ export default {
     // データ作成(書き込み)
     async store() {
       try {
-        const res = await this.$axios.post(
+        const res = await this.$axios.postCall(
           '/api/individual_group',
           this.selected
         )

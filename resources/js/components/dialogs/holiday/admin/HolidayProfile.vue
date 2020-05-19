@@ -160,7 +160,7 @@ export default {
     // データ作成(書き込み)
     async store() {
       try {
-        const res = await this.$axios.post('/api/holiday/admin', this.selected)
+        const res = await this.$axios.postCall('/api/holiday/admin', this.selected)
         this.selected = res.data
         console.log('stored : id=' + res.data.id)
         this.$emit('refresh')

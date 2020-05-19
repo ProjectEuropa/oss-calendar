@@ -79,7 +79,7 @@ export default {
           password: this.password,
           password_confirmation: this.password_confirmation
         }
-        const res = await this.$axios.post('/api/password/reset', data)
+        const res = await this.$axios.postCall('/api/password/reset', data)
         const access_token = res.data.access_token
         this.$auth.setUserToken(access_token)
         this.$store.dispatch(
@@ -87,6 +87,7 @@ export default {
           'パスワードが変更されました！'
         )
       } catch (e) {
+        console.log(e)
         await this.serverSideValidate()
       }
     }
