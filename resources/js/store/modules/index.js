@@ -3,7 +3,7 @@
  * Mutations以外から更新されることは無い。
  * Stateを取得するためにはgettersを使う。
  */
-export const state = () => ({
+const state = () => ({
   title: 'OSSカレンダー',
   drawer: false,
   fixed: true,
@@ -17,7 +17,7 @@ export const state = () => ({
  * stateを更新するにはMutationsからcommitをする。
  * Mutationsは同期処理でなければならない。
  */
-export const mutations = {
+const mutations = {
   toggleDrawer(state) {
     state.drawer = !state.drawer
   },
@@ -40,12 +40,12 @@ export const mutations = {
  * データの加工や非同期処理はActionsで行い、Mutationsからcommitして更新をする。
  * Actionsの呼び出しにはdispatchをする。
  */
-export const actions = {}
+const actions = {}
 
 /**
  * gettersはstateの値を取得するのに利用
  */
-export const getters = {
+const getters = {
   getTitle(state) {
     return state.title
   },
@@ -58,4 +58,12 @@ export const getters = {
   getMiniVariant(state) {
     return state.miniVariant
   }
+}
+
+export default {
+  namespaced: false,
+  state: state(),
+  getters: getters,
+  actions: actions,
+  mutations: mutations
 }
