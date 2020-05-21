@@ -655,7 +655,7 @@ export default {
       } catch (e) {
         await this.serverSideValidate()
         console.log('validate Error : ')
-        console.log(e.response.data)
+        console.log(e.response)
         console.log('validate this.dialog: ' + this.dialog)
       }
     },
