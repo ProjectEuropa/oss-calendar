@@ -220,7 +220,7 @@ export default {
         this.close()
       } catch (e) {
         await this.serverSideValidate()
-        console.log('validate Error : ' + e.response.data)
+        console.log('validate Error : ' + e.response)
         console.log('validate this.dialog: ' + this.dialog)
       }
     },
