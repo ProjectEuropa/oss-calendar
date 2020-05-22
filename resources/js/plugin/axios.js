@@ -2,7 +2,7 @@ import axios from "axios"
 
 const AxiosPlugin = {}
 
-AxiosPlugin.install = function (Vue, options) {
+AxiosPlugin.install = function (Vue, store) {
   Vue.mixin({
     methods: {
       async serverSideValidate() {
@@ -107,7 +107,7 @@ AxiosPlugin.install = function (Vue, options) {
       }
 
       if (message !== null) {
-        this.$store.commit('message/setMessage', message)
+        store.commit('message/setMessage', message)
       }
     }
   );
