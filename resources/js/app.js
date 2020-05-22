@@ -20,7 +20,7 @@ Vue.use(AuthPlugin, router)
 Vue.use(AclPlugin)
 Vue.use(UtilPlugin)
 Vue.use(VariablesPlugin)
-Vue.use(AxiosPlugin)
+Vue.use(AxiosPlugin, store)
 Vue.use(LoadingPlugin)
 Vue.use(RouterOptionPlugin, router, store)
 
