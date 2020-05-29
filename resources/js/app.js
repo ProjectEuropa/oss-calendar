@@ -16,7 +16,7 @@ import NoAuthLayout from '~/layouts/noauth';
 import '~/plugin/vee-validate'
 import store from '~/store/store'
 
-Vue.use(AuthPlugin, router)
+Vue.use(AuthPlugin, router, store)
 Vue.use(AclPlugin)
 Vue.use(UtilPlugin)
 Vue.use(VariablesPlugin)
@@ -26,6 +26,22 @@ Vue.use(RouterOptionPlugin, router, store)
 
 Vue.component('default-layout', DefaultLayout);
 Vue.component('noauth-layout', NoAuthLayout);
+
+Vue.config.errorHandler = (err, vm, info) => {
+  console.log(`Captured in Vue.config.errorHandler: ${info}`, err);
+  store.commit('auth/clearUser');
+  router.push("/auth/login")
+};
+window.addEventListener("error", event => {
+  console.log("Captured in error EventListener", event.error);
+  store.commit('auth/clearUser');
+  router.push("/auth/login")
+});
+window.addEventListener("unhandledrejection", event => {
+  console.log("Captured in unhandledrejection EventListener", event.reason);
+  store.commit('auth/clearUser');
+  router.push("/auth/login")
+});
 
 new Vue({
   vuetify,

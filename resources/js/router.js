@@ -12,6 +12,7 @@ import SettingTokenEmail from '~/pages/password/setting/_token/_email'
 import ResetEmailSent from '~/pages/password/reset_email_sent.vue'
 import Reset from '~/pages/password/reset'
 import UserAdmin from '~/pages/user/admin/index'
+import store from '~/store/store'
 
 Vue.use(Router)
 
@@ -93,26 +94,32 @@ const router = new Router({
   ],
 });
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
+  let user = store.getters['auth/getUser'];
   if (to.meta.auth) {
-    router.app.$axios.get("/api/myself").then(response => {
-      const user = response.data;
-      if (user) {
+    try {
+      if (user.id) {
         router.app.$auth.user = user;
-        next()
       } else {
-        next({
-          name: 'Login',
-        })
+        const res = await router.app.$axios.get("/api/myself");
+        user = res.data;
+        if (user) {
+          router.app.$auth.user = user;
+          next();
+        } else {
+          next({
+            name: 'Login',
+          })
+          return;
+        }
       }
-    }).catch(error => {
+    } catch (error) {
       next({
         name: 'Login',
       })
-    });
-    return;
+      return;
+    }
   }
   next();
-})
-
+});
 export default router
