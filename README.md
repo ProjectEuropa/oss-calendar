@@ -15,7 +15,7 @@ OSS Calendarは企業で使うことを想定したカレンダーアプリで�
 [OSS Calendar](https://oss-calendar.com/)
 
 ## Features
-- Laravel 5.8
+- Laravel 6.x
 - passport
 - Vue + VueRouter + Vuex 
 - vuetify
@@ -38,11 +38,6 @@ cp .env.example .env
 * クライアントサーバとAPIサーバの.envファイルの設定例：  
 
 ```txt
-APP_URL=http://localhost #APIServerのURLを指定
-CLIENT_URL=http://localhost #クライアントのURLを指定、HTMLを配信する場所
-###
-# CLIENT_URLは、npm run devで立ち上げた場合、http://localhost:3000になるため注意する
-###
 
 DB_CONNECTION=mysql
 DB_HOST=mysql
@@ -87,14 +82,11 @@ php artisan passport:install
 
 ### フロントエンドの準備
 ここではDockerではなく、クライアント側でnpmを実行手順を紹介する
-先にも書きましたが、CLIENT_URLの部分は `http://localhost:3000` を指定してください。
 
 * クライアントのコマンド実行例： 
 ```bash
 npm install
-npm install -g nuxt
 npm run dev
-※クライアントサーバのポートは.envに記載してあるポート番号を自動で読み込む
 ```
 
 表示されるURLにアクセスして、ログイン画面が表示され、「admin/admin」でログインできれば環境構築は完了です。
@@ -102,24 +94,6 @@ npm run dev
 ### 補足
 APIサーバには設定ファイルがキャッシュ化されているため、設定変更した場合は、`php artisan optimize`コマンドを実行する。
 
-## 本番環境（加筆中）
-クライアントサーバとAPIサーバを同一サーバにとして稼働させる  
-※同一サーバにすることでサーバのメンテナンスコストを削減できる  
-
-* envの設定例：
-```bash
-CLIENT_URL=http://localhost
-APP_URL=http://localhost
-※CLIENT_URLとAPP_URLは同じにする
-```
-
-* 静的ファイルの書き出し： 
-```bash
-$ npm run generate
-$ npm run build
-※public/_nuxtフォルダに書き出される
-※.envのAPP_URLとCLIENT_URLによって、.htaccessのRewriteBaseは自動設定される
-```
 
 * 同一サーバで稼働させる  
 apacheのドキュメントルートをpublic/以下に設定し、稼働させる  
