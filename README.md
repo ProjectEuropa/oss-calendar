@@ -26,7 +26,7 @@ Dockerを使って開発サーバーを建てる手順について説明しま�
 
 ### バックエンドの準備
 ```sh
-git clone https://github.com/thinkingreed-inc/oss-calendar.git oss-calendar
+git clone https://github.com/ProjectEuropa/oss-calendar.git oss-calendar
 cd oss-calendar
 docker-compose build
 docker-compose up -d
