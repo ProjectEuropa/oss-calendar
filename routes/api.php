@@ -95,6 +95,10 @@ Route::group(['middleware' => ['auth:api']], function () {
     /**
      * スケジュール関連
      */
+    //
+    Route::post('/google/sync', 'SyncGoogleContoller@sync');
+
+
     // スケジュール登録
     Route::post('/schedule', 'ScheduleController@store');
     // スケジュール更新
