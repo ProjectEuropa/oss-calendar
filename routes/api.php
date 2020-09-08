@@ -93,8 +93,12 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('/event_type', 'EventTypeController@index');
 
     /**
-     * スケジュール関連
+     * スケジュール同期
      */
+    //
+    Route::post('/google/sync', 'SyncGoogleController@sync');
+    Route::get('/google/isAuth', 'SyncGoogleController@isAuth');
+
     // スケジュール登録
     Route::post('/schedule', 'ScheduleController@store');
     // スケジュール更新
