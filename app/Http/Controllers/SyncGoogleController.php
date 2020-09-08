@@ -9,14 +9,17 @@ use Auth;
 
 class SyncGoogleController extends Controller
 {
-    //
+
+    /**
+     *
+     */
     public function sync(Request $request)
     {
-        $event = new Event;
-        $event->name = $request->summary;
-        $event->startDateTime = new Carbon("{$request->start_date} {$request->start_date_time}");
-        $event->endDateTime = new Carbon("{$request->end_date} {$request->end_date_time}");
-        $event->save();
+        Event::create([
+            'name' => $request->summary,
+            'startDateTime' => new Carbon("{$request->start_date} {$request->start_date_time}"),
+            'endDateTime' => new Carbon("{$request->end_date} {$request->end_date_time}"),
+        ], Auth::user()->email);
     }
 
     /**

@@ -318,7 +318,11 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="primary" @click="googleDialog()">Googleと同期</v-btn>
+            <v-btn
+              color="primary"
+              v-if="googleCalPermission === 1"
+              @click="googleDialog()"
+            >Googleと同期</v-btn>
             <v-btn color="primary" @click="deleteDialog()">削除</v-btn>
             <v-btn color="primary" @click="editDialog()">編集画面</v-btn>
             <v-btn color="blue darken-1" text @click="detailClose()">閉じる</v-btn>
@@ -396,6 +400,7 @@ export default {
   },
   data() {
     return {
+      googleCalPermission: 0,
       startDateMenu: false, //開始日のポップアップカレンダーの表示フラグ
       endDateMenu: false, //終了日のポップアップカレンダーの表示フラグ
       isTimeView: false, //終日チェックを外したら時刻選択を表示するフラグ
@@ -497,6 +502,7 @@ export default {
   created() {
     this.selected = this.deepCopy(this.defaultValue);
     this.getDefaultReminder(this.$auth.user.id);
+    this.isGoogleAuth();
   },
   mounted() {
     this.setTypes();
@@ -510,6 +516,15 @@ export default {
         }
       ];
       return default_user;
+    },
+    async isGoogleAuth() {
+      try {
+        const res = await this.$axios.get("/api/google/isAuth");
+        this.googleCalPermission = res.data.google_auth;
+        console.info("googleCalPermission", this.googleCalPermission);
+      } catch (e) {
+        throw e;
+      }
     },
     setInit(info) {
       console.log(info);
